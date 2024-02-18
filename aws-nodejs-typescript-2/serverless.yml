@@ -1,0 +1,17 @@
+service: aws-nodejs-typescript-2
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-northeast-1 # 追記
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - eventBridge:
+          schedule: rate(5 minutes)
+
+plugins:
+  - serverless-esbuild
